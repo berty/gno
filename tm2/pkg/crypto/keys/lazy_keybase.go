@@ -37,6 +37,36 @@ func (lkb lazyKeybase) List() ([]Info, error) {
 	return NewDBKeybase(db).List()
 }
 
+func (lkb lazyKeybase) HasByNameOrAddress(nameOrBech32 string) (bool, error) {
+	db, err := db.NewDB(lkb.name, dbBackend, lkb.dir)
+	if err != nil {
+		return false, err
+	}
+	defer db.Close()
+
+	return NewDBKeybase(db).HasByNameOrAddress(nameOrBech32)
+}
+
+func (lkb lazyKeybase) HasByName(name string) (bool, error) {
+	db, err := db.NewDB(lkb.name, dbBackend, lkb.dir)
+	if err != nil {
+		return false, err
+	}
+	defer db.Close()
+
+	return NewDBKeybase(db).HasByName(name)
+}
+
+func (lkb lazyKeybase) HasByAddress(bech32Address string) (bool, error) {
+	db, err := db.NewDB(lkb.name, dbBackend, lkb.dir)
+	if err != nil {
+		return false, err
+	}
+	defer db.Close()
+
+	return NewDBKeybase(db).HasByAddress(bech32Address)
+}
+
 func (lkb lazyKeybase) GetByNameOrAddress(nameOrBech32 string) (Info, error) {
 	db, err := db.NewDB(lkb.name, dbBackend, lkb.dir)
 	if err != nil {

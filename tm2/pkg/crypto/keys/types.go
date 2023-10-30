@@ -13,6 +13,9 @@ import (
 type Keybase interface {
 	// CRUD on the keystore
 	List() ([]Info, error)
+	HasByNameOrAddress(nameOrBech32 string) (bool, error)
+	HasByName(name string) (bool, error)
+	HasByAddress(bech32Address string) (bool, error)
 	GetByNameOrAddress(nameOrBech32 string) (Info, error)
 	GetByName(name string) (Info, error)
 	GetByAddress(address crypto.Address) (Info, error)
