@@ -57,14 +57,14 @@ func (lkb lazyKeybase) HasByName(name string) (bool, error) {
 	return NewDBKeybase(db).HasByName(name)
 }
 
-func (lkb lazyKeybase) HasByAddress(bech32Address string) (bool, error) {
+func (lkb lazyKeybase) HasByAddress(address crypto.Address) (bool, error) {
 	db, err := db.NewDB(lkb.name, dbBackend, lkb.dir)
 	if err != nil {
 		return false, err
 	}
 	defer db.Close()
 
-	return NewDBKeybase(db).HasByAddress(bech32Address)
+	return NewDBKeybase(db).HasByAddress(address)
 }
 
 func (lkb lazyKeybase) GetByNameOrAddress(nameOrBech32 string) (Info, error) {
