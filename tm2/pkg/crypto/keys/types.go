@@ -15,7 +15,7 @@ type Keybase interface {
 	List() ([]Info, error)
 	HasByNameOrAddress(nameOrBech32 string) (bool, error)
 	HasByName(name string) (bool, error)
-	HasByAddress(bech32Address string) (bool, error)
+	HasByAddress(address crypto.Address) (bool, error)
 	GetByNameOrAddress(nameOrBech32 string) (Info, error)
 	GetByName(name string) (Info, error)
 	GetByAddress(address crypto.Address) (Info, error)
